@@ -6,7 +6,7 @@ namespace Microsoft.Cognitive.Face
     {
         private const string RequestHeaderKey = "Ocp-Apim-Subscription-Key";
         public static Region ResourceRegion { get; set; } = Region.WestUs;
-        public static string FaceApiKey { get; set; } = "16ea7f10deab4828a098e5053b79a0e6";
+        public static string FaceApiKey { get; set; } = "===>API Key Goes Here<===";
         public static Dictionary<string, string> FaceApiKeyHeader
         {
             get
