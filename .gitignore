@@ -42,3 +42,4 @@ obj/
 *.log
 *.idb
 *.opendb
+MicrosoftCognitiveServices/FaceAPI/
