@@ -27,3 +27,7 @@ Initially written at the Azure & MR/AI Hackathon March 2018.
 - [ ] Language Understanding API
 - [ ] Translator Speech API
 - [ ] Bing Search API
+
+# Getting Started
+
+To open the dashboard: `Window->Microsoft Cognitive Services`
