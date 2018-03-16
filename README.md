@@ -1,7 +1,5 @@
 # MicrosoftCognitiveServices-Unity
-Microsoft Cognitive Services API wrapper for Unity.
-
-Library to use and consume the Microsoft Cognitive Services inside the Unity Editor.
+This library is inteded to speed up development time to utilize the Microsoft Cognitive Services inside the Unity Editor.
 
 Includes a helpful REST library written by me and the [Unity async/await utilities by Steve Vermeulen](https://github.com/svermeulen/Unity3dAsyncAwaitUtil).
 
