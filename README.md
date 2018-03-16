@@ -31,3 +31,4 @@ Initially written at the Azure & MR/AI Hackathon March 2018.
 # Getting Started
 
 To open the dashboard: `Window->Microsoft Cognitive Services`
+Open the FaceApiClient in Visual Studio and paste in your key. (the editor inspector does not work)
