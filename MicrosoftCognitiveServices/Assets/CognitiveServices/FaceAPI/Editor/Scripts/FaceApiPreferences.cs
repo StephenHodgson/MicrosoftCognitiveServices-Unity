@@ -389,7 +389,7 @@ namespace Microsoft.Cognitive.Face.Editor
 
         private static Texture2D LoadImageResource(string name)
         {
-            return AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/FaceAPI/Editor/Icons/" + name + ".png");
+            return AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/CognitiveServices/FaceAPI/Editor/Icons/" + name + ".png");
         }
     }
 }
