@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Cognitive.DataStructures.Face;
-using Microsoft.Cognitive.Face;
+using Microsoft.Cognitive.Vision.Face;
 using UnityEngine;
 
 #if UNITY_WSA

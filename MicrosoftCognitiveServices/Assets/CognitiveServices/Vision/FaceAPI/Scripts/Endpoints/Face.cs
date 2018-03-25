@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Cognitive.DataStructures.Face;
 using UnityEngine;
 
-namespace Microsoft.Cognitive.Face
+namespace Microsoft.Cognitive.Vision.Face
 {
     public static class Face
     {
@@ -50,7 +50,7 @@ namespace Microsoft.Cognitive.Face
                 string.Format(DetectQuery, FaceApiClient.ResourceRegion.ToString().ToLower()),
                 string.Format("?returnFaceId={0}&returnFaceLandmarks={1}", returnFaceId, returnFaceLandmarks),
                 ParseFaceAttributes(returnFaceAttributes));
-            Rest.Response response = await Rest.PostAsync(query, "{\"url\":\"" + imageUrl + "\"}", FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.PostAsync(query, "{\"url\":\"" + imageUrl + "\"}", FaceApiClient.ApiKeyHeader);
             if (!response.Successful) { throw new InvalidOperationException(response.ResponseBody); }
             return JsonUtility.FromJson<FaceList>(response.ResponseBody).Faces;
         }
@@ -75,7 +75,7 @@ namespace Microsoft.Cognitive.Face
                 string.Format(DetectQuery, FaceApiClient.ResourceRegion.ToString().ToLower()),
                 string.Format("?returnFaceId={0}&returnFaceLandmarks={1}", returnFaceId, returnFaceLandmarks),
                 ParseFaceAttributes(returnFaceAttributes));
-            Rest.Response response = await Rest.PostAsync(query, imageData, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.PostAsync(query, imageData, FaceApiClient.ApiKeyHeader);
             if (!response.Successful) { throw new InvalidOperationException(response.ResponseBody); }
             return JsonUtility.FromJson<FaceList>(string.Format("{{\"Faces\":{0}}}", response.ResponseBody)).Faces;
         }
@@ -121,7 +121,7 @@ namespace Microsoft.Cognitive.Face
         {
             var query = string.Format(IdentityQuery, FaceApiClient.ResourceRegion.ToString().ToLower());
             var json = JsonUtility.ToJson(new IdentifyRequest(faceIds, personGroupId, maxNumOfCandidatesReturned, confidenceThreshold));
-            Rest.Response response = await Rest.PostAsync(query, json, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.PostAsync(query, json, FaceApiClient.ApiKeyHeader);
             if (!response.Successful) { throw new InvalidOperationException(response.ResponseBody); }
             return JsonUtility.FromJson<IdentifyResultList>(string.Format("{{\"Results\":{0}}}", response.ResponseBody)).Results;
         }

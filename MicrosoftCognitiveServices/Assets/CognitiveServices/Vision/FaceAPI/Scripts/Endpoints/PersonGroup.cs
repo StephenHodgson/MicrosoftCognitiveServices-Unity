@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Cognitive.DataStructures.PersonGroup;
 using UnityEngine;
 
-namespace Microsoft.Cognitive.Face
+namespace Microsoft.Cognitive.Vision.Face
 {
     public static class PersonGroup
     {
@@ -20,7 +20,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task<PersonGroupInfo?> GetGroupAsync(string personGroupId)
         {
             string query = string.Format(PersonGroupQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId);
-            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersonGroupInfo>(response.ResponseBody) : (PersonGroupInfo?)null;
         }
 
@@ -33,7 +33,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task<PersonGroupInfo[]> GetGroupListAsync(string start = "", int top = 1000)
         {
             string query = string.Format(PersonListQuery, FaceApiClient.ResourceRegion, start, top);
-            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersonGroupList>(string.Format("{{\"PersonGroups\":{0}}}", response.ResponseBody)).PersonGroups : null;
         }
 
@@ -61,7 +61,7 @@ namespace Microsoft.Cognitive.Face
             }
 
             var query = string.Format(PersonGroupQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId);
-            await Rest.PutAsync(query, JsonUtility.ToJson(new CreateGroupRequest(displayName, userData)), FaceApiClient.FaceApiKeyHeader);
+            await Rest.PutAsync(query, JsonUtility.ToJson(new CreateGroupRequest(displayName, userData)), FaceApiClient.ApiKeyHeader);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task DeleteGroupAsync(string personGroupId)
         {
             var query = string.Format(PersonGroupQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId);
-            await Rest.DeleteAsync(query, FaceApiClient.FaceApiKeyHeader);
+            await Rest.DeleteAsync(query, FaceApiClient.ApiKeyHeader);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task TrainGroupAsync(string personGroupId)
         {
             var query = string.Format(TrainQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId);
-            await Rest.PostAsync(query, FaceApiClient.FaceApiKeyHeader);
+            await Rest.PostAsync(query, FaceApiClient.ApiKeyHeader);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task<TrainingStatus?> GetTrainingStatusAsync(string personGroupId)
         {
             var query = string.Format(TrainingStatusQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId);
-            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<TrainingStatus>(response.ResponseBody) : (TrainingStatus?)null;
         }
     }

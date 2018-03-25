@@ -4,7 +4,7 @@ using Microsoft.Cognitive.DataStructures.Face;
 using Microsoft.Cognitive.DataStructures.Person;
 using UnityEngine;
 
-namespace Microsoft.Cognitive.Face
+namespace Microsoft.Cognitive.Vision.Face
 {
     public static class Person
     {
@@ -20,7 +20,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task<PersonInfo?> GetPersonAsync(string personGroupId, string personId)
         {
             var query = string.Format(GetPersonQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId, "/" + personId);
-            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersonInfo>(response.ResponseBody) : (PersonInfo?)null;
         }
 
@@ -34,7 +34,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task<PersonInfo[]> GetPersonListAsync(string personGroupId, string start = "", int top = 1000)
         {
             var query = string.Format(GetPersonQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId, string.Format("?start={0}&top={1}", start, top));
-            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.GetAsync(query, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersonList>(string.Format("{{\"People\":{0}}}", response.ResponseBody)).People : null;
         }
 
@@ -54,7 +54,7 @@ namespace Microsoft.Cognitive.Face
 
             var query = string.Format(GetPersonQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId, "");
             var json = JsonUtility.ToJson(new CreatePerson(personName, userData));
-            Rest.Response response = await Rest.PostAsync(query, json, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.PostAsync(query, json, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersonId>(response.ResponseBody).personId : string.Empty;
         }
 
@@ -67,7 +67,7 @@ namespace Microsoft.Cognitive.Face
         public static async Task DeletePersonAsync(string personGroupId, string personId)
         {
             var query = string.Format(GetPersonQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId, "/" + personId);
-            await Rest.DeleteAsync(query, FaceApiClient.FaceApiKeyHeader);
+            await Rest.DeleteAsync(query, FaceApiClient.ApiKeyHeader);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Microsoft.Cognitive.Face
         {
             string args = string.Format("?userData={0}&targetFace={1}", userData, targetFace);
             var query = string.Format(PersistedFacesQuery, FaceApiClient.ResourceRegion.ToString().ToLower(), personGroupId, personId, args);
-            Rest.Response response = await Rest.PostAsync(query, imageData, FaceApiClient.FaceApiKeyHeader);
+            Rest.Response response = await Rest.PostAsync(query, imageData, FaceApiClient.ApiKeyHeader);
             return response.Successful ? JsonUtility.FromJson<PersistedFaceInfo>(response.ResponseBody).persistedFaceId : string.Empty;
         }
     }

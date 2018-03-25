@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Microsoft.Cognitive.Face.Editor
+namespace Microsoft.Cognitive.Vision.Face.Editor
 {
     public class FaceApiPreferences : EditorWindow
     {
@@ -81,7 +81,7 @@ namespace Microsoft.Cognitive.Face.Editor
                 EditorGUILayout.LabelField("Face API Client Settings", new GUIStyle("label") { fontStyle = FontStyle.Bold });
                 EditorGUI.indentLevel++;
                 {
-                    FaceApiClient.FaceApiKey = EditorGUILayout.TextField("Face API Key", FaceApiClient.FaceApiKey);
+                    FaceApiClient.ApiKey = EditorGUILayout.TextField("Face API Key", FaceApiClient.ApiKey);
                     FaceApiClient.ResourceRegion = (Region)EditorGUILayout.EnumPopup("Region", FaceApiClient.ResourceRegion);
                 }
                 EditorGUI.indentLevel--;
