@@ -29,7 +29,7 @@ The library was mostly generated from the OpenAPI (swagger) endpoints provided i
     - [ ] [Custom Vision Service (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/)
     - [ ] [Video Indexer (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/video-indexer/)
 - [ ] Speech
-    - [x] [Translator Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-speech-api/)
+    - [ ] [Translator Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-speech-api/)
     - [ ] [Bing Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/speech/)
     - [ ] [Speaker Recognition API (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/speaker-recognition/)
     - [ ] [Custom Speech Service (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/custom-speech-service/)
@@ -37,7 +37,7 @@ The library was mostly generated from the OpenAPI (swagger) endpoints provided i
     - [ ] [Language Understanding (LUIS)](https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/)
     - [ ] [Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)
     - [ ] [Bing Spell Check API](https://azure.microsoft.com/en-us/services/cognitive-services/spell-check/)
-    - [ ] [Translator Text API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/)
+    - [x] [Translator Text API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/)
     - [ ] [Web Language Model API (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/web-language-model/)
     - [ ] [Linguistic Analysis API (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/linguistic-analysis-api/)
 - [ ] Knowledge
