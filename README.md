@@ -9,8 +9,7 @@ The library was mostly generated from the OpenAPI (swagger) endpoints provided i
 
 # Requirements
 
-- Unity 2017.x or higher with .NET 4.x support enabled.
-- Visual Studio 2017
+- Unity 2017.2.x or higher with .NET 4.x support enabled.
 
 # Confirmed Supported Platforms
 
@@ -51,9 +50,3 @@ The library was mostly generated from the OpenAPI (swagger) endpoints provided i
     - [ ] [Bing Web Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-web-search-api/)
     - [ ] [Bing Custom Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-custom-search/)
     - [ ] [Bing Entity Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-entity-search-api/)
-
-# Getting Started
-
-To open the dashboard: `Window->Microsoft Cognitive Services`.
-
-Open the FaceApiClient in Visual Studio and paste in your key. (the editor inspector does not work)
