@@ -29,7 +29,7 @@ The library was mostly generated from the OpenAPI (swagger) endpoints provided i
     - [ ] [Custom Vision Service (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/)
     - [ ] [Video Indexer (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/video-indexer/)
 - [ ] Speech
-    - [ ] [Translator Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-speech-api/)
+    - [x] [Translator Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/translator-speech-api/)
     - [ ] [Bing Speech API](https://azure.microsoft.com/en-us/services/cognitive-services/speech/)
     - [ ] [Speaker Recognition API (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/speaker-recognition/)
     - [ ] [Custom Speech Service (PREVIEW)](https://azure.microsoft.com/en-us/services/cognitive-services/custom-speech-service/)
