@@ -12,12 +12,14 @@ public static class Rest
     {
         public readonly bool Successful;
         public readonly string ResponseBody;
+        public readonly byte[] ResponseData;
         public readonly long ResponseCode;
 
-        public Response(bool successful, string responseBody, long responseCode)
+        public Response(bool successful, string responseBody, byte[] responseData, long responseCode)
         {
             Successful = successful;
             ResponseBody = responseBody;
+            ResponseData = responseData;
             ResponseCode = responseCode;
         }
     }
@@ -39,6 +41,38 @@ public static class Rest
     }
 
     /// <summary>
+    /// Rest GET for Audio Files.
+    /// </summary>
+    /// <param name="query">Finalized Endpoint Query with parameters.</param>
+    /// <param name="audioType">Expected Audio Type.</param>
+    /// <param name="headers">Optional header information for the request.</param>
+    /// <returns>The response data.</returns>
+    public static async Task<AudioClip> GetAudioClipAsync(string query, AudioType audioType, Dictionary<string, string> headers = null)
+    {
+        using (var webRequest = UnityWebRequestMultimedia.GetAudioClip(query, audioType))
+        {
+            if (headers != null)
+            {
+                foreach (var header in headers)
+                {
+                    webRequest.SetRequestHeader(header.Key, header.Value);
+                }
+            }
+
+            await webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                string responseHeaders = webRequest.GetResponseHeaders().Aggregate
+                (string.Empty, (current, header) => string.Format("{0}{1}: {2}\n", current, header.Key, header.Value));
+                Debug.LogErrorFormat("REST Error: {0}\n{1}", webRequest.responseCode, responseHeaders);
+            }
+
+            return DownloadHandlerAudioClip.GetContent(webRequest);
+        }
+    }
+
+    /// <summary>
     /// Rest POST.
     /// </summary>
     /// <param name="query">Finalized Endpoint Query with parameters.</param>
@@ -56,8 +90,8 @@ public static class Rest
     /// Rest POST.
     /// </summary>
     /// <param name="query">Finalized Endpoint Query with parameters.</param>
-    /// <param name="headers">Optional header information for the request.</param>
     /// <param name="json">Optional JSON data for the request.</param>
+    /// <param name="headers">Optional header information for the request.</param>
     /// <returns>The response data.</returns>
     public static async Task<Response> PostAsync(string query, string json, Dictionary<string, string> headers = null)
     {
@@ -110,12 +144,12 @@ public static class Rest
     /// Rest PUT.
     /// </summary>
     /// <param name="query">Finalized Endpoint Query with parameters.</param>
-    /// <param name="bodyData">Data to be submitted.</param>
+    /// <param name="jsonData">Json to be submitted.</param>
     /// <param name="headers">Optional header information for the request.</param>
     /// <returns>The response data.</returns>
-    public static async Task<Response> PutAsync(string query, string bodyData, Dictionary<string, string> headers = null)
+    public static async Task<Response> PutAsync(string query, string jsonData, Dictionary<string, string> headers = null)
     {
-        using (var webRequest = UnityWebRequest.Put(query, bodyData))
+        using (var webRequest = UnityWebRequest.Put(query, jsonData))
         {
             webRequest.SetRequestHeader("Content-Type", "application/json");
             return await ProcessRequestAsync(webRequest, headers);
@@ -189,9 +223,9 @@ public static class Rest
                 (string.Empty, (current, header) =>
                     string.Format("{0}{1}: {2}\n", current, header.Key, header.Value));
             Debug.LogErrorFormat("REST Error: {0} | {1}\n{2}", webRequest.responseCode, webRequest.downloadHandler?.text, responseHeaders);
-            return new Response(false, webRequest.downloadHandler?.text, webRequest.responseCode);
+            return new Response(false, webRequest.downloadHandler?.text, webRequest.downloadHandler?.data, webRequest.responseCode);
         }
 
-        return new Response(true, webRequest.downloadHandler?.text, webRequest.responseCode);
+        return new Response(true, webRequest.downloadHandler?.text, webRequest.downloadHandler?.data, webRequest.responseCode);
     }
 }
