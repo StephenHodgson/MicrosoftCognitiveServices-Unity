@@ -64,7 +64,7 @@ public static class Rest
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
                 string responseHeaders = webRequest.GetResponseHeaders().Aggregate
-                (string.Empty, (current, header) => string.Format("{0}{1}: {2}\n", current, header.Key, header.Value));
+                    (string.Empty, (current, header) => $"{current}{header.Key}: {header.Value}\n");
                 Debug.LogErrorFormat("REST Error: {0}\n{1}", webRequest.responseCode, responseHeaders);
             }
 
@@ -220,8 +220,7 @@ public static class Rest
         if (webRequest.isNetworkError || webRequest.isHttpError)
         {
             string responseHeaders = webRequest.GetResponseHeaders().Aggregate
-                (string.Empty, (current, header) =>
-                    string.Format("{0}{1}: {2}\n", current, header.Key, header.Value));
+                (string.Empty, (current, header) => $"{current}{header.Key}: {header.Value}\n");
             Debug.LogErrorFormat("REST Error: {0} | {1}\n{2}", webRequest.responseCode, webRequest.downloadHandler?.text, responseHeaders);
             return new Response(false, webRequest.downloadHandler?.text, webRequest.downloadHandler?.data, webRequest.responseCode);
         }
